@@ -1,0 +1,127 @@
+[window]
+padding = { x = 12, y = 10 }
+decorations = "full"
+opacity = 0.90
+
+[font]
+size = 11.0
+
+[font.normal]
+family = "Iosevka SS08"
+style = "Regular"
+
+[font.bold]
+family = "Iosevka SS08"
+style = "Bold"
+
+[font.italic]
+family = "Iosevka SS08"
+style = "Italic"
+
+[font.bold_italic]
+family = "Iosevka SS08"
+style = "Bold Italic"
+
+[font.offset]
+x = 1
+y = 1
+
+#  COLORS
+#
+#  Background      #141411  — deep earth / cavern
+#  Void            #0c0d0b  — unlit stone
+#  Stone           #24231d  — carved rock
+#  Moss            #394033  — ancient growth
+#  Gold            #a8945c  — crystal illumination
+#  Crystal         #718b78  — fading crystal light
+#  Ember           #9b6045  — warning / fire
+
+[colors]
+draw_bold_text_with_bright_colors = true
+
+[colors.primary]
+background = "#141411"
+foreground = "#c8bfa3"
+dim_foreground = "#817963"
+
+[colors.cursor]
+text = "#141411"
+cursor = "#c7ae68"
+
+[colors.vi_mode_cursor]
+text = "#141411"
+cursor = "#718b78"
+
+[colors.selection]
+text = "#c8bfa3"
+background = "#353329"
+
+[colors.search]
+matches = { foreground = "#141411", background = "#a8945c" }
+focused_match = { foreground = "#0c0d0b", background = "#c7ae68" }
+
+#  ANSI PALETTE
+#
+#  Black      = void
+#  Red        = ember / clay
+#  Green      = moss
+#  Yellow     = old gold
+#  Blue       = cold crystal
+#  Magenta    = bruised stone
+#  Cyan       = mineral / faded crystal
+#  White      = parchment / bone
+
+[colors.normal]
+black   = "#0c0d0b"
+red     = "#9b6045"
+green   = "#59634b"
+yellow  = "#a8945c"
+blue    = "#536b67"
+magenta = "#665766"
+cyan    = "#718b78"
+white   = "#817963"
+
+[colors.bright]
+black   = "#24231d"
+red     = "#b06a4b"
+green   = "#6c7758"
+yellow  = "#c7ae68"
+blue    = "#718b78"
+magenta = "#806d7d"
+cyan    = "#8aa593"
+white   = "#c8bfa3"
+
+[colors.dim]
+black   = "#0c0d0b"
+red     = "#6f4637"
+green   = "#414b39"
+yellow  = "#70613e"
+blue    = "#3d514e"
+magenta = "#4d4250"
+cyan    = "#4d6256"
+white   = "#625d4d"
+
+[cursor]
+style = { shape = "Block", blinking = "On" }
+blink_interval = 650
+blink_timeout = 0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[mouse]
+hide_when_typing = true
+
+[terminal]
+osc52 = "CopyPaste"
+
+[selection]
+save_to_clipboard = false
+
+[bell]
+duration = 0
+color = "#9b6045"
+
+[debug]
+persistent_logging = false
