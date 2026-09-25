@@ -1,40 +1,90 @@
+# i3status config -- m31
+# github.com/0x91CC8963
+
 general {
     colors = true
     interval = 5
-    color_good = "#65d6d0"
-    color_degraded = "#d8b56a"
-    color_bad = "#d87979"
+
+    color_good = "#FFFFFF"
+    color_degraded = "#B8975A"
+    color_bad = "#FFAA00"
+
+    output_format = "i3bar"
 }
 
 order += "wireless _first_"
 order += "ethernet _first_"
+order += "battery all"
 order += "cpu_usage"
 order += "memory"
 order += "disk /"
+order += "volume master"
 order += "tztime local"
 
+# ------------------------------------------------------------
+
 wireless _first_ {
-    format_up = " ◇ %quality "
-    format_down = " ◇ -- "
+    format_up = "W %essid %quality"
+    format_down = ""
 }
 
 ethernet _first_ {
-    format_up = " ◆ %speed "
-    format_down = " ◆ -- "
+    format_up = "E %ip"
+    format_down = ""
 }
+
+# ------------------------------------------------------------
+
+battery all {
+    format = "%status %percentage %remaining"
+
+    status_chr = "BAT"
+    status_bat = "BAT"
+    status_unk = "BAT"
+    status_full = "FULL"
+
+    last_full_capacity = true
+
+    integer_battery_capacity = true
+
+    color_good = "#FFFFFF"
+    color_degraded = "#B8975A"
+    color_bad = "#FFAA00"
+}
+
+# ------------------------------------------------------------
 
 cpu_usage {
-    format = " ◈ CPU %usage "
+    format = "CPU %usage"
 }
+
+# ------------------------------------------------------------
 
 memory {
-    format = " ◇ MEM %used/%total "
+    format = "MEM %used / %total"
 }
+
+# ------------------------------------------------------------
 
 disk "/" {
-    format = " ✦ / %free "
+    format = "SSD %avail"
 }
 
+# ------------------------------------------------------------
+
+volume master {
+    format = "VOL %volume"
+    format_muted = "VOL --"
+
+    device = "default"
+
+    color_good = "#FFFFFF"
+    color_degraded = "#B8975A"
+    color_bad = "#FFAA00"
+}
+
+# ------------------------------------------------------------
+
 tztime local {
-    format = " ❖ %Y-%m-%d %H:%M "
+    format = "%Y-%m-%d %H:%M"
 }
