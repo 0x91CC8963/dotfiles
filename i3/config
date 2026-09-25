@@ -1,176 +1,165 @@
+# i3 config -- m31
+# github.com/0x91CC8963
+
 set $mod Mod1
 
-font pango:dragon_alphabet 12
+font pango:Iosevka 10
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+set $term alacritty
+set $menu dmenu_run
 
-set $bg           #141411
-set $void         #0c0d0b
-set $stone        #24231d
-set $stone_light  #353329
-set $bark         #30271f
-set $moss         #394033
+# ------------------------------------------------------------
 
-set $fg           #c8bfa3
-set $fg_dim       #817963
-set $gold         #a8945c
-set $gold_bright  #c7ae68
-set $ember        #9b6045
-set $crystal      #718b78
-set $crystal_dim  #4d6256
+set $black       #000000
+set $nearblack   #111111
+set $gray        #444444
+set $lightgray   #AAAAAA
+set $white       #FFFFFF
+set $amber       #FFAA00
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# class			border      background  text        indicator   child_border
+client.focused          $amber      $white      $black      $amber      $white
+client.focused_inactive $gray       $gray       $white      $gray       $lightgray
+client.unfocused        $white      $white      $lightgray  $gray       $lightgray
+client.urgent           $amber      $amber      $black      $amber      $amber
+client.placeholder      $black      $white      $lightgray  $gray       $black
 
-gaps inner 7
-gaps outer 3
+# ------------------------------------------------------------
 
-default_border normal 2
-default_floating_border normal 2
+default_border pixel 1
+default_floating_border pixel 1
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gaps inner 4
+gaps outer 2
 
-#                  border       background    text       indicator  child_border
-client.focused     $a8945c        $stone        $fg        $gold       $gold
-client.unfocused   $stone_light $bg           $fg_dim    $stone      $stone
-client.focused_inactive $crystal_dim $stone $fg_dim $crystal_dim $crystal_dim
-client.urgent      $ember       $bark         #ead8b0    $ember      $ember
+hide_edge_borders smart
 
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# ------------------------------------------------------------
 
-set $ws1 "01"
-set $ws2 "02"
-set $ws3 "03"
-set $ws4 "04"
-set $ws5 "05"
-set $ws6 "06"
-set $ws7 "07"
-set $ws8 "08"
-set $ws9 "09"
-set $ws10 "10"
+bindsym $mod+Return exec --no-startup-id $term
+bindsym $mod+d exec --no-startup-id $menu
 
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-
-bindsym $mod+minus move scratchpad
-bindsym $mod+grave scratchpad show
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-bar {
-    position top
-
-    status_command i3status
-
-    tray_output primary
-
-    font pango:dragon_alphabet 11
-
-    colors {
-        background         $void
-        statusline         $fg
-        separator          $stone_light
-
-        # Workspace: inactive / active / urgent
-        focused_workspace  $gold $gold $void
-        active_workspace   $stone $stone $fg
-        inactive_workspace $void  $void  $fg_dim
-        urgent_workspace   $ember $ember #f0dfbd
-    }
-}
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-exec --no-startup-id dex --autostart --environment i3
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-floating_modifier $mod
-tiling_drag modifier titlebar
-
-bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+Shift+q kill
-
-bindsym $mod+d exec --no-startup-id dmenu_run
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
-
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
-
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
-
-bindsym $mod+h split h
-bindsym $mod+v split v
-bindsym $mod+f fullscreen toggle
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
-bindsym $mod+space focus mode_toggle
-bindsym $mod+a focus parent
-
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 bindsym $mod+Shift+c reload
 bindsym $mod+Shift+r restart
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'EXIT MACHINE SESSION?' -B 'YES' 'i3-msg exit'"
+
+# ------------------------------------------------------------
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left  focus left
+bindsym $mod+Down  focus down
+bindsym $mod+Up    focus up
+bindsym $mod+Right focus right
+
+# ------------------------------------------------------------
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left  move left
+bindsym $mod+Shift+Down  move down
+bindsym $mod+Shift+Up    move up
+bindsym $mod+Shift+Right move right
+
+# ------------------------------------------------------------
+
+bindsym $mod+e layout toggle split
+
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+a focus parent
+bindsym $mod+u focus child
+
+# ------------------------------------------------------------
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+
+# ------------------------------------------------------------
 
 mode "resize" {
-        bindsym j resize shrink width 10 px or 10 ppt
-        bindsym k resize grow height 10 px or 10 ppt
-        bindsym l resize shrink height 10 px or 10 ppt
-        bindsym semicolon resize grow width 10 px or 10 ppt
+    bindsym h resize shrink width 10 px or 10 ppt
+    bindsym j resize grow height 10 px or 10 ppt
+    bindsym k resize shrink height 10 px or 10 ppt
+    bindsym l resize grow width 10 px or 10 ppt
 
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Left  resize shrink width 10 px or 10 ppt
+    bindsym Down  resize grow height 10 px or 10 ppt
+    bindsym Up    resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
 
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
 bindsym $mod+r mode "resize"
 
+# ------------------------------------------------------------
+
+bindsym $mod+Shift+f fullscreen toggle
+bindsym $mod+Shift+m sticky toggle
+
+# ------------------------------------------------------------
+
+bar {
+    status_command i3status -c ~/.config/i3status/config
+
+    position top
+
+    font pango:Iosevka 10
+
+    colors {
+        background $white
+        statusline $black
+
+        separator  $white
+
+        focused_workspace  $amber  $amber  $black
+        active_workspace   $amber  $white  $black
+        inactive_workspace $amber  $white  $black
+        urgent_workspace   $amber  $amber  $black
+        binding_mode       $amber  $amber  $black
+    }
+}
