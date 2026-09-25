@@ -1,0 +1,100 @@
+# alacritty config -- m31
+# github.com/0x91CC8963
+
+[window]
+padding = { x = 12, y = 10 }
+dynamic_padding = false
+decorations = "full"
+opacity = 1.0
+
+startup_mode = "Windowed"
+
+[font]
+normal = { family = "Iosevka Term", style = "Medium" }
+bold = { family = "Iosevka Term", style = "Bold" }
+italic = { family = "Iosevka Term", style = "Italic" }
+
+size = 11.0
+
+[colors.primary]
+background = "#10161C"
+foreground = "#C7D0D9"
+
+dim_foreground = "#687681"
+
+[colors.cursor]
+text = "#10161C"
+cursor = "#C7D0D9"
+
+[colors.vi_mode_cursor]
+text = "#10161C"
+cursor = "#D98A24"
+
+[colors.selection]
+text = "#10161C"
+background = "#C7D0D9"
+
+# ------------------------------------------------------------
+
+[colors.normal]
+black   = "#182027"
+red     = "#B85C5C"
+green   = "#789678"
+yellow  = "#B8975A"
+blue    = "#6689A8"
+magenta = "#887894"
+cyan    = "#67949A"
+white   = "#B8C2CC"
+
+# ------------------------------------------------------------
+
+[colors.bright]
+black   = "#34414A"
+red     = "#D07171"
+green   = "#91AA91"
+yellow  = "#D0AE6B"
+blue    = "#82A5C5"
+magenta = "#A691B3"
+cyan    = "#82ADB2"
+white   = "#E1E7EC"
+
+# ------------------------------------------------------------
+
+[colors.search.matches]
+foreground = "#10161C"
+background = "#B8975A"
+
+[colors.search.focused_match]
+foreground = "#10161C"
+background = "#D98A24"
+
+# ------------------------------------------------------------
+
+[colors.hints.start]
+foreground = "#10161C"
+background = "#D98A24"
+
+[colors.hints.end]
+foreground = "#10161C"
+background = "#B8975A"
+
+# ------------------------------------------------------------
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+# ------------------------------------------------------------
+
+[selection]
+semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"
+
+# ------------------------------------------------------------
+
+[terminal]
+osc52 = "CopyPaste"
+
+# ------------------------------------------------------------
+
+[mouse]
+hide_when_typing = true
